@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  password  String? 
+  provider  String?
+  projectname ProjectName[] 
+  projects Projects[]
+}
+model Projects {
+  id            String       @id @default(uuid())
+  name          String
+  fileContent   String
+  userId        String
+  projectnameId String       @unique  
+  user          User         @relation(fields: [userId], references: [id])
+  projectname   ProjectName  @relation("ProjectNameToProjects", fields: [projectnameId], references: [id])
+}
+model file {
+  id      String  @id @default(uuid())
+  filename String
+  fileContent    String
+  // projectId  String
+  // files    ProjectName    @relation(fields: [projectId], references: [id])
+}
+model setup{
+  id      String  @id @default(uuid())
+  name    String
+  fileContent String
+}
+
+// model Projects{
+// id String @id @default(uuid())
+// name String
+// fileContent String
+// userId String
+// projectnameId String @unique
+// user User @relation(fields: [userId], references: [id])
+// projectname ProjectName @relation("ProjectsToProjectName",fields: [projectnameId],references: [id])
+// }
+
+
+model ProjectName {
+  id        String     @id @default(uuid())
+  name      String
+  userId    String
+
+  user      User       @relation(fields: [userId], references: [id])
+  project   Projects?  @relation("ProjectNameToProjects")
+}
+
+
