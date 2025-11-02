@@ -43,7 +43,7 @@ export default function IDE() {
  useEffect(() => {
   console.log(files.length,files,"length");
   if(files.length > 0 || liveId){
-      const ws = new WebSocket("ws://localhost:8080");
+      const ws = new WebSocket("ws://codely.mooo.com:8080");
 
     ws.onopen = () => {
       console.log("✅ Connected to WebSocket server");
@@ -140,7 +140,7 @@ else{
 const handleLive = async()=>{
   try {
     setisClicked(true);
-    const res = await fetch("http://localhost:3000/api/live",{
+    const res = await fetch("http://codely.mooo.com:3000/api/live",{
       method:"POST",
       headers:{
         'Content-Type':'application/json'
@@ -167,7 +167,7 @@ setisClicked(false);
   const handleRun = async() => {
    try {
     setisClicked(true);
-    const res = await fetch("http://localhost:3000/api/projecte/run",{
+    const res = await fetch("http://codely.mooo.com:3000/api/projecte/run",{
       method:"POST",
       headers:{
         "Content-Type":"application/json"
@@ -189,7 +189,7 @@ setisClicked(false);
 const handleSave = async()=>{
   setisClicked(true);
 try {
-  const res = await fetch("http://localhost:3000/api/projecte/project",{
+  const res = await fetch("http://codely.mooo.com:3000/api/projecte/project",{
   method:"POST",
   headers:{
     'Content-Type':"application/json"

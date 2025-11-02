@@ -573,7 +573,7 @@ else{
 
   pack.pipe(docker.stdin);
 
-  return { containerName, port, previewUrl: `http://localhost:${port}` };
+  return { containerName, port, previewUrl: `http://codely.mooo.com:${port}` };
 }
 
 export async function POST(req: NextRequest) {

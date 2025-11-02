@@ -16,7 +16,7 @@ const Collab = () => {
   }
   console.log("reached");
   try {
-     const res = await fetch("http://localhost:9000/checkId",{
+     const res = await fetch("http://codely.mooo.com:9000/checkId",{
     method:"POST",
     headers:{
         'Content-Type':'application/json'

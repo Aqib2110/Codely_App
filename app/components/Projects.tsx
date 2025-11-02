@@ -32,7 +32,7 @@ const Projects = ({data}:any) => {
     if (project) {
       alert(project);
 try {
-   const projec = await fetch("/api/myprojects",{
+   const projec = await fetch("http://codely.mooo.com:3000/api/myprojects",{
         method:"POST",
         headers:{
           'Content-Type':'application/json'
@@ -64,7 +64,7 @@ const handleSetup = async (setup: string) => {
   // }
   try {
     setload(true);
-    const response = await fetch("/api/projecte/pull", {
+    const response = await fetch("http://codely.mooo.com:3000/api/projecte/pull", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

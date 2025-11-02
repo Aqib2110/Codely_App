@@ -10,7 +10,7 @@ export default function SignUp() {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const res = await fetch("/api/signup",{
+    const res = await fetch("http://codely.mooo.com:3000/api/signup",{
         method:"POST",
         headers:{
  "Conten-Type":"application/json",

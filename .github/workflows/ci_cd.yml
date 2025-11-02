@@ -1,0 +1,42 @@
+name: Deploy to a Docker
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: aqib2110/my-codely-app:${{ github.sha }}
+
+      - name: Deploy to VM
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/ssh_key
+          chmod 600 ~/ssh_key
+
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@16.171.18.68 "
+            sudo docker rm -f my-todo-backend || true
+            sudo docker run -d \
+              --name my-todo-backend \
+              -e DATABASE_URL='${DATABASE_URL}' \
+              -p 3001:3001 \
+              aqib2110/my-todo-backend:${GITHUB_SHA}
+          "
+          rm -f ~/ssh_key

@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 // app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "http://codely.mooo.com:3000", credentials: true }));
 
 
 
@@ -188,7 +188,7 @@ socket.on("message", async (msg) => {
     });
   });
 
-  console.log("✅ WebSocket server running at ws://localhost:8080");
+  console.log("✅ WebSocket server running at ws://13.48.129.114:8080");
 }
 
 

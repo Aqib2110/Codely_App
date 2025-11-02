@@ -12,9 +12,9 @@ export default function SessionProviderWrapper({
   session?: Session | null
 }) {
  const router = useRouter();
-// if(!session?.user)
-// {
-// router.push("/api/auth/signin");
-// }
+if(!session?.user)
+{
+router.push("/api/auth/signin");
+}
   return <SessionProvider session={session}>{children}</SessionProvider>
 }
