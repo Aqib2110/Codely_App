@@ -11,10 +11,18 @@ export default function SessionProviderWrapper({
   children: React.ReactNode
   session?: Session | null
 }) {
- const router = useRouter();
-if(!session?.user)
+   const router = useRouter();
+  useEffect(() => {
+   const path = window.location.pathname;
+   if(!session?.user && path !== "/api/auth/signup")
 {
 router.push("/api/auth/signin");
 }
+  }, [])
+  
+// if(!session?.user && window.location.pathname !== "/api/auth/signup")
+// {
+// router.push("/api/auth/signin");
+// }
   return <SessionProvider session={session}>{children}</SessionProvider>
 }

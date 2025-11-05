@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import MyContext from "./components/Context";
 import { Geist, Geist_Mono } from "next/font/google";
+import Unauthorize from "./components/Unauthorize";
 import "./globals.css";
 import SessionProviderWrapper from "../app/components/providers";
 import { getAuthSession } from "@/utils/getSession";
@@ -36,7 +37,9 @@ export default async function RootLayout({
         <SessionProviderWrapper session={session}>
           <MyContext>
             <Header />
-            {children} 
+            <Unauthorize>
+              {children}
+            </Unauthorize>
             <Footer />
           </MyContext>
         </SessionProviderWrapper>
