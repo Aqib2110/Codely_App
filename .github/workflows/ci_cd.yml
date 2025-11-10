@@ -27,16 +27,21 @@ jobs:
         env:
           GITHUB_SHA: ${{ github.sha }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/ssh_key
           chmod 600 ~/ssh_key
 
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@16.171.18.68 "
-            sudo docker rm -f my-todo-backend || true
-            sudo docker run -d \
-              --name my-todo-backend \
-              -e DATABASE_URL='${DATABASE_URL}' \
-              -p 3001:3001 \
-              aqib2110/my-todo-backend:${GITHUB_SHA}
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.48.129.114 "
+            docker rm -f my-codely-app || true
+            docker run -d \
+            --name my-codely-app \
+            -p 3000:3000 \
+            -e DATABASE_URL='${DATABASE_URL}' \
+            -e NEXTAUTH_SECRET='${NEXTAUTH_SECRET}' \
+            -e NEXTAUTH_URL='${NEXTAUTH_URL}' \
+            --restart=always \
+            aqib2110/my-codely-app:${GITHUB_SHA}
           "
           rm -f ~/ssh_key
