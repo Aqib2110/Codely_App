@@ -29,26 +29,26 @@ const Header = () => {
     }
   }, [menu]);
 
-  const handlePost = async ()=>{
-   try {
-     const res = await fetch("/api/projecte/push",{
-      method:"POST",
-      headers:{
-       "Content-Type":"application/json"
-      }
-     });
-    const data = await res.json();
-    if(!res.ok)
-    {
-     alert(data.message);
-     return;
-    }
-    alert("Projects Posted Successfully");
-   } catch (error) {
-     alert("An error occurred while posting the project.");
-   }
+  // const handlePost = async ()=>{
+  //  try {
+  //    const res = await fetch("/api/projecte/push",{
+  //     method:"POST",
+  //     headers:{
+  //      "Content-Type":"application/json"
+  //     }
+  //    });
+  //   const data = await res.json();
+  //   if(!res.ok)
+  //   {
+  //    alert(data.message);
+  //    return;
+  //   }
+  //   alert("Projects Posted Successfully");
+  //  } catch (error) {
+  //    alert("An error occurred while posting the project.");
+  //  }
 
-  }
+  // }
   return (
     <>
     <div className='bg-orange-400 md:py-auto md:px-auto px-3 py-5 relative p-0 md:p-4 flex justify-between items-center'>
@@ -123,9 +123,9 @@ const Header = () => {
 
 
 
-     <div className='hidden lg:block'>
+     {/* <div className='hidden lg:block'>
       <span className='px-4 py-2 text-white border rounded-lg' onClick={handlePost}>post</span>
-     </div>
+     </div> */}
 
 
 
@@ -197,4 +197,5 @@ const Header = () => {
 }
 
 export default Header
+
 
