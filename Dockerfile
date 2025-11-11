@@ -21,9 +21,11 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/server ./server
 
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
 CMD ["sh", "-c", "npx prisma migrate deploy && npx ts-node server/ws-server.ts && npm start"]
+
 
