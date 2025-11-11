@@ -5,7 +5,7 @@ export async function POST(req:NextRequest)
 const liveId = uuidv4();
 const {codeId,projectnameid,socketId,container,output,selected} = await req.json();
 try {
-    const res = await fetch('http://localhost:9000/live',{
+    const res = await fetch('http://codely.mooo.com:9000/live',{
     method:"POST",
     headers:{
         'Content-Type':'application/json'
