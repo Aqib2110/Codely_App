@@ -40,6 +40,7 @@ jobs:
             -p 3000:3000 \
             -p 8080:8080 \
             -p 3001:3001 \
+            -p 9000:9000 \
             -e DATABASE_URL='${DATABASE_URL}' \
             -e NEXTAUTH_SECRET='${NEXTAUTH_SECRET}' \
             -e NEXTAUTH_URL='${NEXTAUTH_URL}' \
