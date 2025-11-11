@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci
+RUN npm install -D ts-node typescript
 
 COPY . .
 
@@ -24,4 +25,5 @@ COPY --from=builder /app/prisma ./prisma
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx ts-node server/ws-server.ts && npm start"]
+
