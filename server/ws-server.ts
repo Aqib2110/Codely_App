@@ -67,7 +67,7 @@ app.listen(9000, () => console.log("🧩 API bridge running on port 9000"));
 // Start WebSocket server (avoid double init)
 const globalForWSS = globalThis as any;
 if (!globalForWSS._wss) {
-  const wss = new WebSocketServer({ port: 8080 });
+  const wss = new WebSocketServer({ port: 8080, host: '0.0.0.0' });
   globalForWSS._wss = wss;
 
   wss.on("connection", (socket) => {
