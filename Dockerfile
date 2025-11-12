@@ -11,8 +11,8 @@ COPY . .
 RUN npx prisma generate
 RUN npm run build
 
-# compile using tsconfig.json
-RUN npx tsc -p tsconfig.json
+# Compile ONLY WebSocket server (with proper tsconfig)
+RUN npx tsc server/ws-server.ts --outDir dist/server --target ES2017 --esModuleInterop
 
 FROM node:20-alpine AS runner
 WORKDIR /app
@@ -30,6 +30,7 @@ ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/server/ws-server.js & npm start"]
+
 
 
 
