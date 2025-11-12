@@ -36,7 +36,7 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/dist ./dist  
+COPY --from=builder /app/dist ./dist  # compiled ws-server.js
 
 # Set environment variable for database
 ARG DATABASE_URL
@@ -47,4 +47,5 @@ EXPOSE 3000 8080
 
 # Start Prisma migrations, WebSocket server, and Next.js app
 CMD sh -c "npx prisma migrate deploy && node dist/server/ws-server.js & npm start"
+
 
