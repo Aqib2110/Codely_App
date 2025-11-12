@@ -32,14 +32,14 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noEmit": false,
     "esModuleInterop": true,
-    "module": "CommonJS",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "outDir": "dist",
     "plugins": [
       {
         "name": "next"
@@ -47,15 +47,12 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "outDir": "dist"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "server/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "server/**/*.ts"],
   "exclude": ["node_modules"]
 }
+
+
 
