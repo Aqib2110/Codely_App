@@ -22,7 +22,8 @@ jobs:
           context: .
           push: true
           tags: aqib2110/my-codely-app:${{ github.sha }}
-
+          no-cache: true
+          
       - name: Deploy to VM
         env:
           GITHUB_SHA: ${{ github.sha }}
