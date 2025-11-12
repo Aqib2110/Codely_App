@@ -29,7 +29,7 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 ENV NODE_ENV=production
-
+RUN apk add --no-cache docker-cli
 # Copy dependencies and built assets
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
