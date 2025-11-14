@@ -378,7 +378,7 @@ if(files.length <= 0)
   return (
     <div className="flex w-full h-screen">
       {/* Sidebar */}
-      <div className="w-[20%] bg-gray-900 text-white p-4 overflow-auto">
+      <div className="lg:w-[20%] w-[50%] bg-gray-900 text-white p-4 overflow-auto">
         <h2 className="text-lg mb-3 font-semibold flex justify-between items-center">
           Files
           <span>
@@ -430,7 +430,7 @@ if(files.length <= 0)
 
 
 
-      <div className="flex-1 w-[80%]  h-full flex flex-col">
+      <div className="flex-1 lg:w-[80%] w-[100%] overflow-auto h-full flex flex-col">
         <Editor
           height="70%"
           language="javascript"
