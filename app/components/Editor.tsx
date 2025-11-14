@@ -134,7 +134,9 @@ else{
       ws?.close();
       setcode([]);
     };
-  }, [files]);
+  // }, [files]);
+     }, []);
+
 
 
 const handleLive = async()=>{
