@@ -123,9 +123,9 @@ const Header = () => {
 
 
 
-     <div className='hidden lg:block'>
+     {/* <div className='hidden lg:block'>
       <span className='px-4 py-2 text-white border rounded-lg' onClick={handlePost}>post</span>
-     </div>
+     </div> */}
 
 
 
